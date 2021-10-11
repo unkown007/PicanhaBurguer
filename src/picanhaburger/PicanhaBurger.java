@@ -29,7 +29,7 @@ public class PicanhaBurger {
         
         qtdSimples = qtdCompleto = 0;
         
-        int valorEmpresa = 0;
+        float valorEmpresa = 0.0f;
         
         int numVenda = 0;
         
@@ -38,22 +38,19 @@ public class PicanhaBurger {
         char extraIngr = ' ';
         float valor, valorPagar = 0, desconto = 0;
         
-        char opHamb, opIng;
-        
         do {
             System.out.println("1. Receber os dados da Venda");
-            System.out.println("2. Visualizar o valor a pagar");
-            System.out.println("3. Dados da venda");
-            System.out.println("4. Valor da total recebido pela empresa");
-            System.out.println("5. Quantidade de pedidos para cada tipo de hamburger");
-            System.out.println("6. Visualizar o ingrediente mais solicitadoo");
+            System.out.println("2. Dados da venda");
+            System.out.println("3. Valor da total recebido pela empresa");
+            System.out.println("4. Quantidade de pedidos para cada tipo de hamburger");
+            System.out.println("5. Visualizar o ingrediente mais solicitadoo");
             System.out.println("0. Sair");
             do {
                 System.out.print("Opcao: ");
                 op = Byte.parseByte(rd.readLine());
-                if( op < 0 || op > 6)
+                if( op < 0 || op > 5)
                     System.out.println("Opcao ivalida");
-            }while(op < 0 || op > 6);
+            }while(op < 0 || op > 5);
             
             switch(op) {
                 case 1:
@@ -68,22 +65,22 @@ public class PicanhaBurger {
                         System.out.println("S - Simples");
                         System.out.println("C - Completo");
                         System.out.print("Opcao: ");
-                        opHamb = rd.readLine().charAt(0);
-                        if(opHamb != 'S' && opHamb != 'C')
+                        tipo = rd.readLine().charAt(0);
+                        if(tipo != 'S' && tipo != 'C')
                                 System.out.println("Opcao invalida");
-                    }while(opHamb != 'S' && opHamb != 'C');
+                    }while(tipo != 'S' && tipo != 'C');
                     
                     do {
                         System.out.println("O - Ovo");
                         System.out.println("B - Batata Frita");
                         System.out.println("F - Fiambre");
                         System.out.print("Opcao: ");
-                        opIng = rd.readLine().charAt(0);
-                        if(opIng != 'O' && opIng != 'B' && opIng != 'F')
+                        extraIngr = rd.readLine().charAt(0);
+                        if(extraIngr != 'O' && extraIngr != 'B' && extraIngr != 'F')
                             System.out.println("Opcao invalida");
-                    }while(opIng != 'O' && opIng != 'B' && opIng != 'F');
+                    }while(extraIngr != 'O' && extraIngr != 'B' && extraIngr != 'F');
                     
-                    if(opHamb == 'S'){
+                    if(tipo == 'S'){
                         qtdSimples += 1;
                         valorPagar += SIMPLES;
                     }else {
@@ -91,15 +88,15 @@ public class PicanhaBurger {
                         valorPagar += COMPLETO;
                     }
                     
-                    if(opIng == 'O') {
+                    if(extraIngr == 'O') {
                         qtdOvo += 1;
                         valorPagar += OVO;
                     }else{
-                        if(opIng == 'B') {
+                        if(extraIngr == 'B') {
                             qtdBatata += 1;
                             valorPagar += BATATA;
                         }else{
-                            if(opIng == 'F'){
+                            if(extraIngr == 'F'){
                                 qtdFiambre += 1;
                                 valorPagar += FIAMBRE;
                             }
@@ -121,11 +118,9 @@ public class PicanhaBurger {
                     }while(valor < valorPagar);
                     
                     numVenda += 1;
+                    valorEmpresa += valorPagar;
                 break;
                 case 2:
-                
-                break;
-                case 3:
                     System.out.printf("\n%8s%10s%10s%s\n", " ==============","===========","==========================",
                             "=========================");
                     System.out.printf("%-10s%-20s%-25s%-20s  |\n", "| Codigo","| Tipo","| Extra","| Valor a pagar");
@@ -137,13 +132,13 @@ public class PicanhaBurger {
                             "=========================");
                     System.out.println("\n");
                 break;
+                case 3:
+                    
+                break;
                 case 4:
                 
                 break;
                 case 5:
-                
-                break;
-                case 6:
                 
                 break;
             }
