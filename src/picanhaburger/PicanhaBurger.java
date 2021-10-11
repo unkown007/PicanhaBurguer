@@ -140,7 +140,15 @@ public class PicanhaBurger {
                     System.out.println("Hamburger Completo: " + qtdCompleto + " Pedidos");
                 break;
                 case 5:
-                
+                    if( qtdOvo > qtdBatata && qtdOvo > qtdFiambre) {
+                        System.out.println("Ovo: " + qtdOvo);
+                    }else{
+                        if(qtdBatata > qtdOvo && qtdBatata > qtdFiambre) {
+                            System.out.println("Batata frita: " + qtdBatata);
+                        }else{
+                            System.out.println("Fiambre: " + qtdFiambre);
+                        }
+                    }
                 break;
             }
             
