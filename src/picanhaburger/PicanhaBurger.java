@@ -1,11 +1,13 @@
 package picanhaburger;
 
 import java.io.*;
+import java.text.DecimalFormat;
 
 public class PicanhaBurger {
 
     public static void main(String[] args) throws IOException {
         BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
+        DecimalFormat mt = new DecimalFormat("###,###,###.00 MT");
         byte op;
         
         final short SIMPLES  = 120;
@@ -31,9 +33,9 @@ public class PicanhaBurger {
         
         int numVenda = 0;
         
-        short cod;
-        char tipo;
-        char extraIngr;
+        short cod = 0;
+        char tipo = ' ';
+        char extraIngr = ' ';
         float valor, valorPagar = 0, desconto = 0;
         
         char opHamb, opIng;
@@ -109,7 +111,7 @@ public class PicanhaBurger {
                         valorPagar -= desconto;
                     }
                     
-                    System.out.println("Valor a pagar: " + valorPagar);
+                    System.out.println("Valor a pagar: " + mt.format(valorPagar));
                     
                     do {
                         System.out.print("Valor: ");
@@ -124,7 +126,16 @@ public class PicanhaBurger {
                 
                 break;
                 case 3:
-                
+                    System.out.printf("\n%8s%10s%10s%s\n", " ==============","===========","==========================",
+                            "=========================");
+                    System.out.printf("%-10s%-20s%-25s%-20s  |\n", "| Codigo","| Tipo","| Extra","| Valor a pagar");
+                    System.out.printf("%8s%10s%10s%s\n", " ==============","===========","=============================",
+                            "======================");
+                    System.out.printf("| %-7d%-3s%-14s%5s%14s%11s%17s    |\n", cod, " |", tipo, " |", extraIngr,
+                                    " |", mt.format(valorPagar));
+                    System.out.printf("%8s%10s%10s%s\n", " ==============","===========","==========================",
+                            "=========================");
+                    System.out.println("\n");
                 break;
                 case 4:
                 
