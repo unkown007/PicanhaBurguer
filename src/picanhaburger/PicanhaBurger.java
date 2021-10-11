@@ -99,7 +99,7 @@ public class PicanhaBurger {
                             qtdBatata += 1;
                             valorPagar += BATATA;
                         }else{
-                            if(opIng == 'B'){
+                            if(opIng == 'F'){
                                 qtdFiambre += 1;
                                 valorPagar += FIAMBRE;
                             }
