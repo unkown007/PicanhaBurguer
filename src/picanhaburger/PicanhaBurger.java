@@ -8,8 +8,8 @@ public class PicanhaBurger {
         BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
         byte op;
         
-        final byte SIMPLES  = (byte) 120;
-        final byte COMPLETO = (byte) 150;
+        final short SIMPLES  = 120;
+        final short COMPLETO = 150;
         
         // ingredientes extras
         final byte OVO = 50;
@@ -31,10 +31,12 @@ public class PicanhaBurger {
         
         int numVenda = 0;
         
-        byte cod;
+        short cod;
         char tipo;
         char extraIngr;
-        float valor;
+        float valor, valorPagar = 0, desconto = 0;
+        
+        char opHamb, opIng;
         
         do {
             System.out.println("1. Receber os dados da Venda");
@@ -53,7 +55,70 @@ public class PicanhaBurger {
             
             switch(op) {
                 case 1:
-                
+                    do {
+                        System.out.print("Codigo: ");
+                        cod = Short.parseShort(rd.readLine());
+                        if(cod < 100 || cod > 999)
+                            System.out.println("Codigo invalido");
+                    }while(cod < 100 || cod > 999);
+                    
+                    do {
+                        System.out.println("S - Simples");
+                        System.out.println("C - Completo");
+                        System.out.print("Opcao: ");
+                        opHamb = rd.readLine().charAt(0);
+                        if(opHamb != 'S' && opHamb != 'C')
+                                System.out.println("Opcao invalida");
+                    }while(opHamb != 'S' && opHamb != 'C');
+                    
+                    do {
+                        System.out.println("O - Ovo");
+                        System.out.println("B - Batata Frita");
+                        System.out.println("F - Fiambre");
+                        System.out.print("Opcao: ");
+                        opIng = rd.readLine().charAt(0);
+                        if(opIng != 'O' && opIng != 'B' && opIng != 'F')
+                            System.out.println("Opcao invalida");
+                    }while(opIng != 'O' && opIng != 'B' && opIng != 'F');
+                    
+                    if(opHamb == 'S'){
+                        qtdSimples += 1;
+                        valorPagar += SIMPLES;
+                    }else {
+                        qtdCompleto += 1;
+                        valorPagar += COMPLETO;
+                    }
+                    
+                    if(opIng == 'O') {
+                        qtdOvo += 1;
+                        valorPagar += OVO;
+                    }else{
+                        if(opIng == 'B') {
+                            qtdBatata += 1;
+                            valorPagar += BATATA;
+                        }else{
+                            if(opIng == 'B'){
+                                qtdFiambre += 1;
+                                valorPagar += FIAMBRE;
+                            }
+                        }
+                    }
+                    
+                    if(numVenda <= 10) {
+                        desconto = valorPagar*0.07f;
+                        valorPagar -= desconto;
+                    }
+                    
+                    System.out.println("Valor a pagar: " + valorPagar);
+                    
+                    do {
+                        System.out.print("Valor: ");
+                        valor = Float.parseFloat(rd.readLine());
+                        if(valor < valorPagar)
+                            System.out.println("Valor incompleto");
+                    }while(valor < valorPagar);
+                    
+                    numVenda += 1;
                 break;
                 case 2:
                 
