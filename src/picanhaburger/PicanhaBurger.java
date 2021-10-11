@@ -133,10 +133,11 @@ public class PicanhaBurger {
                     System.out.println("\n");
                 break;
                 case 3:
-                    
+                    System.out.println("Valor da Empresa: " + valorEmpresa);
                 break;
                 case 4:
-                
+                    System.out.println("Hamburger Simples: " + qtdSimples + " Pedidos");
+                    System.out.println("Hamburger Completo: " + qtdCompleto + " Pedidos");
                 break;
                 case 5:
                 
